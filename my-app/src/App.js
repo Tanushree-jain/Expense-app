@@ -1,6 +1,7 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
+
 const DUMMY_DATA = [
   {
     id: 'e1',
@@ -23,25 +24,27 @@ const DUMMY_DATA = [
   },
 ];
 const App = () => {
-const[expenses,setExpenses]=useState(DUMMY_DATA)
-const addExpenseHandler = expense =>{
-  setExpenses(prevexpense => {
-    return([expense, ...prevexpense])
-  })
-  // console.log("in app.js");
-  // console.log(expenses)
-  // const addExpense = {
-  //   ...expenses, expense
+  const [expenses, setExpenses] = useState(DUMMY_DATA);
+
+  const addExpenseHandler = new_expense => {
+    setExpenses([new_expense, ...expenses])
+  }
+
+  // const updateExpenseHandler = payload => {
+  //   let updatedArr = expenses
+  //   let index = updatedArr.findIndex((obj => obj.id == payload.id));
+  //   updatedArr[index].title = payload.title
+  //   console.log(updatedArr)
+    
   // }
-  //  console.log(prevexpense)
-   console.log(expenses)
-}
-return (
+
+  return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-<Expenses expenses={expenses}/>
+      {/* <Expenses items={expenses} updateFunc={updateExpenseHandler}/> */}
+      <Expenses items={expenses} />
     </div>
   );
- }
+}
 
 export default App;
